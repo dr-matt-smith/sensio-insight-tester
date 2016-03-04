@@ -8,7 +8,6 @@
 
 namespace Itb;
 
-
 class DatatbaseUtility
 {
 
@@ -89,7 +88,7 @@ class DatatbaseUtility
 
         // empty array for new values
         $propertiesWithSimpleKeys = [];
-        foreach($properties as $key=>$value){
+        foreach ($properties as $key=>$value) {
             $simpleKey = str_replace($className, '', $key);
             $simpleKey = filter_var($simpleKey, FILTER_SANITIZE_STRING);
             $propertiesWithSimpleKeys[$simpleKey] = $value;
@@ -132,7 +131,7 @@ class DatatbaseUtility
     public static function fieldListToValuesString($fields)
     {
         $formattedFields = [];
-        foreach($fields as $field){
+        foreach ($fields as $field) {
             $fieldWithColonPrefix = ':' . $field;
             $formattedFields[] = $fieldWithColonPrefix;
         }
@@ -155,12 +154,11 @@ class DatatbaseUtility
     public static function fieldListToUpdateString($fields)
     {
         $formattedFields = [];
-        foreach($fields as $field){
+        foreach ($fields as $field) {
             $fieldWithEqualsColonPrefix = $field . ' = :' . $field;
             $formattedFields[] = $fieldWithEqualsColonPrefix;
         }
 
         return ' ' . implode(', ', $formattedFields) . ' ';
     }
-
 }

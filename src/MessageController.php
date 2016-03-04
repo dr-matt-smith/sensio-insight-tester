@@ -52,7 +52,7 @@ class MessageController
 
         // use MessageRepository to store new Message object
         $messageRepository = new DatabaseTableRepository('Message', 'messages');
-        if($messageRepository->create($message)){
+        if ($messageRepository->create($message)) {
             $this->messagesAction($twig);
         } else {
             $errorMessage = 'there was a problem adding your message to the database ...';
@@ -70,14 +70,13 @@ class MessageController
         // use MessageRepository to store new Message object
         $messageRepository = new DatabaseTableRepository('Message', 'messages');
 
-        if($messageRepository->delete($id)){
+        if ($messageRepository->delete($id)) {
             $this->messagesAction($twig);
         } else {
             $errorMessage = 'there was a problem delete message with id ' . $id . 'to the database ...';
             $errorController = new ErrorController();
             $errorController->messagesAction($twig, $errorMessage);
         }
-
     }
 
     public function messageEditAction(\Twig_Environment $twig)
@@ -117,7 +116,7 @@ class MessageController
 
         // use MessageRepository to store new Message object
         $messageRepository = new DatabaseTableRepository('Message', 'messages');
-        if($messageRepository->update($message, $id)){
+        if ($messageRepository->update($message, $id)) {
             $this->messagesAction($twig);
         } else {
             $errorMessage = 'there was a problem editing your message in the database ...';
@@ -125,6 +124,4 @@ class MessageController
             $errorController->messagesAction($twig, $errorMessage);
         }
     }
-
-
 }

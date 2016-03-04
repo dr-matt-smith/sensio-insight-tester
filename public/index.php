@@ -13,7 +13,7 @@ $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
 $mainController = new MainController();
 $messageController = new MessageController();
 
-switch ($action){
+switch ($action) {
     case 'about':
         $mainController->aboutAction($twig);
         break;
@@ -24,7 +24,7 @@ switch ($action){
         $mainController->listAction($twig);
         break;
     case 'detail':
-        $mainController->detailAction($twig,$id);
+        $mainController->detailAction($twig, $id);
         break;
     case 'sitemap':
         $mainController->sitemapAction($twig);

@@ -103,7 +103,7 @@ class DatabaseTableRepository
         $statement->execute($objectAsArrayForSqlInsert);
 
         $queryWasSuccessful = ($statement->rowCount() > 0);
-        if($queryWasSuccessful) {
+        if ($queryWasSuccessful) {
             return $connection->lastInsertId();
         } else {
             return -1;
@@ -136,5 +136,4 @@ class DatabaseTableRepository
 
         return $queryWasSuccessful;
     }
-
 }

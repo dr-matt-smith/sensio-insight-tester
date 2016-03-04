@@ -92,5 +92,4 @@ class Dvd
     {
         return 2 * $this->numVotes;
     }
-
 }

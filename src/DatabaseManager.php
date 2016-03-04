@@ -81,5 +81,4 @@ class DatabaseManager
     {
         return $this->error;
     }
-
 }

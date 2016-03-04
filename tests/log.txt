@@ -1,0 +1,12 @@
+TAP version 13
+ok 1 - ItbTest\ZMetaTest::testPSR2DirectorySrc
+ok 2 - ItbTest\ZMetaTest::testPSR2DirectoryTests
+not ok 3 - Failure: ItbTest\ZMetaTest::testPSR2DirectoryPublic
+  ---
+  message: 'PSR-2 linter reported errors in ./public/: 1) index.php'
+  severity: fail
+  data:
+      got: 1
+      expected: 0
+  ...
+1..3

@@ -70,5 +70,4 @@ class Message
 
         return $dateTimeObject;
     }
-
 }

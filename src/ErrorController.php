@@ -13,5 +13,4 @@ class ErrorController
         $htmlOutput = $twig->render($template . '.html.twig', $argsArray);
         print $htmlOutput;
     }
-
 }
