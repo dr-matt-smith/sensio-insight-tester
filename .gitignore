@@ -43,3 +43,5 @@
 /php-cs-fixer.phar
 /phpDocumentor.phar
 /phpunit.phar
+
+.idea/*
