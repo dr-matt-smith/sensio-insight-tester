@@ -7,28 +7,28 @@
 {% block main %}
 
 <h1>
-Edit you message
+Edit your message
 </h1>
 
 
 <fieldset>
     <legend>Send us a message to say hi!</legend>
 
-    <fom
+    <form
             method="post"
-            action="?action=pocessMessageUpdateFom"
+            action="?action=processMessageUpdateForm"
     >
 
         <p>
-            You message:
-            <b>
-            <textaea name="text" cols="40" ows="5" equied >{{ message.text }}</textaea>
+            Your message:
+            <br>
+            <textarea name="text" cols="40" rows="5" required >{{ message.text }}</textarea>
         </p>
 
         <p>
-            You name:
-            <b>
-            <input type="text" name="use" equied value="{{ message.use }}">
+            Your name:
+            <br>
+            <input type="text" name="user" required value="{{ message.user }}">
         </p>
 
         <input type="hidden" name="id" value="{{ message.id }}">
@@ -37,7 +37,7 @@ Edit you message
             <input type="submit" value="update message">
         </p>
 
-    </fom>
+    </form>
 </fieldset>
 
 {% endblock %}

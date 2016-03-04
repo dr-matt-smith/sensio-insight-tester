@@ -4,68 +4,68 @@
 {% block pageTitle %}List DVDs page{% endblock %}
 
 {# ------------------------------------------------- #}
-{% block listLinkStyle %}cuent_page{% endblock %}
+{% block listLinkStyle %}current_page{% endblock %}
 
 {# ------------------------------------------------- #}
 {% block main %}
 
-<!-- stat table fo displaying DVD details -->
-<h2>Lists of DVDs and thei aveage votes</h2>
+<!-- start table for displaying DVD details -->
+<h2>Lists of DVDs and their average votes</h2>
 
-    {# -------- offe button to clea the seach,. if a seach tem is pesent -------- #}
-    {% if seachText %}
-        <a hef="?action=list">(eset seach)</a>
+    {# -------- offer button to clear the search,. if a search term is present -------- #}
+    {% if searchText %}
+        <a href="?action=list">(reset search)</a>
     {% endif %}
-    <fom
-        action="?action=filteList"
+    <form
+        action="?action=filterList"
         method="post">
 
-        <input type="text" name="seachText" value="{{ seachText }}">
-        <input type="submit" value="seach title only">
-    </fom>
+        <input type="text" name="searchText" value="{{ searchText }}">
+        <input type="submit" value="search title only">
+    </form>
 
-    <fom
-            action="?action=filteListTitleOCategoy"
+    <form
+            action="?action=filterListTitleOrCategory"
             method="post">
 
-        <input type="text" name="seachText" value="{{ seachText }}">
-        <input type="submit" value="seach title and categoy">
-    </fom>
+        <input type="text" name="searchText" value="{{ searchText }}">
+        <input type="submit" value="search title and category">
+    </form>
 
 
 
     <table>
-    <t>
+    <tr>
         <th> ID </th>
         <th> title </th>
-        <th> categoy </th>
-        <th> pice </th>
-        <th> vote aveage </th>
+        <th> category </th>
+        <th> price </th>
+        <th> vote average </th>
         <th> num votes </th>
-        <th> stas </th>
-    </t>
+        <th> stars </th>
+    </tr>
 
-    <!-- ********************* HTML fo dvd items ****************** -->
+    <!-- ********************* HTML for dvd items ****************** -->
 <!--
     //   	0 - 15 - 40 - 55 - 70 - 85 - 100 %age
-    // 	      .5   1    2    3    4    5     stas
+    // 	      .5   1    2    3    4    5     stars
 -->
 
-{% fo dvd in dvds %}
-    <t>
+{% for dvd in dvds %}
+    <tr>
         <td>{{ dvd.id }}</td>
-        <td><a hef="/?action=detail&id={{ dvd.id }}">{{ dvd.title }}</a></td>
-        <td>{{ dvd.categoy }}</td>
-        <td>&euo; {{ dvd.pice }}</td>
-        <td>{{ dvd.voteAveage }} %</td>
+        <td><a href="/?action=detail&id={{ dvd.id }}">{{ dvd.title }}</a></td>
+        <td>{{ dvd.category }}</td>
+        <td>&euro; {{ dvd.price }}</td>
+        <td>{{ dvd.voteAverage }} %</td>
         <td>{{ dvd.numVotes }}</td>
 
         <td>
-            {% include '_staImage.html.twig' with {'numVotes':dvd.numVotes, 'voteAveage':dvd.voteAveage} %}
+            {% include '_starImage.html.twig' with {'numVotes':dvd.numVotes, 'voteAverage':dvd.voteAverage} %}
         </td>
 
-    </t>
-{% endfo %}
+    </tr>
+{% endfor %}
 
 </table>
 

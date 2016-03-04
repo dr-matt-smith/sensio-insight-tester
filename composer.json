@@ -1,9 +1,7 @@
 {
   "name":"eVote DVD - for sensio labs testing",
-  "licence":[
-    "(CC BY-NC 3.0",
-    "https://creativecommons.org/licenses/by-nc/3.0/"
-    ],
+  "licence":"(CC BY-NC 3.0",
+  "description":"sample project to illustrate how to write web applications with Silex and Twig",
   "autoload":{
     "psr-4":{
       "Itb\\":"src/"
