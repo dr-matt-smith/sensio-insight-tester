@@ -1,4 +1,9 @@
 {
+  "name":"eVote DVD - for sensio labs testing",
+  "licence":[
+    "(CC BY-NC 3.0",
+    "https://creativecommons.org/licenses/by-nc/3.0/"
+    ],
   "autoload":{
     "psr-4":{
       "Itb\\":"src/"

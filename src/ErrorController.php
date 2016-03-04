@@ -5,7 +5,6 @@ class ErrorController
 {
     public function messagesAction(\Twig_Environment $twig, $erorrMessage)
     {
-        $templateName = 'error';
         $argsArray = [
             'errorMessage' => $erorrMessage
         ];

@@ -77,4 +77,9 @@ class DatabaseManager
         return $this->dbh;
     }
 
+    public function getError()
+    {
+        return $this->error;
+    }
+
 }

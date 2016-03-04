@@ -18,17 +18,12 @@ class DatabaseTableRepository
         $connection = $db->getDbh();
 
         $sql = 'SELECT * from ' . $this->tableName;
-//          die($sql);
 
         $statement = $connection->prepare($sql);
         $statement->setFetchMode(\PDO::FETCH_CLASS, $this->className);
         $statement->execute();
 
         $objects = $statement->fetchAll();
-/*
-        $numObjects = count($objects);
-        die('num objects = ' . $numObjects);
-*/
         return $objects;
     }
 
@@ -104,7 +99,6 @@ class DatabaseTableRepository
         $insertFieldList = DatatbaseUtility::fieldListToInsertString($fields);
         $valuesFieldList = DatatbaseUtility::fieldListToValuesString($fields);
 
-//        $statement = $connection->prepare('INSERT into '. $this->tableName . ' (text, user, timestamp) value (:text, :user, :timestamp)');
         $statement = $connection->prepare('INSERT into '. $this->tableName . ' ' . $insertFieldList . $valuesFieldList);
         $statement->execute($objectAsArrayForSqlInsert);
 

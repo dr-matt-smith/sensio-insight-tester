@@ -4,19 +4,19 @@
 {% block pageTitle %}Messages page{% endblock %}
 
 {# ------------------------------------------------- #}
-{% block messagesLinkStyle %}current_page{% endblock %}
+{% block messagesLinkStyle %}cuent_page{% endblock %}
 
 {# ------------------------------------------------- #}
 {% block main %}
 
-<!-- start table for displaying DVD details -->
-<h2>Messages from people</h2>
+<!-- stat table fo displaying DVD details -->
+<h2>Messages fom people</h2>
 
-{% for message in messages %}
-    <hr>
+{% fo message in messages %}
+    <h>
     <p>
-        posted by <strong>{{ message.user }}</strong>
-        <br>
+        posted by <stong>{{ message.use }}</stong>
+        <b>
         {{ message.timestamp|date("l jS M h:i:s A")  }}
     </p>
 
@@ -24,20 +24,20 @@
         {{ message.text }}
     </blockquote>
 
-    <form
+    <fom
         action="?action=deleteMessage&id={{ message.id }}"
         method="post">
         <input type="submit" value="(delete)">
-    </form>
+    </fom>
 
-    <form
+    <fom
             action="?action=editMessage&id={{ message.id }}"
             method="post">
         <input type="submit" value="(edit)">
-    </form>
+    </fom>
 
 {% else %}
     <p>(no messages found)</p>
-{% endfor %}
+{% endfo %}
 
 {% endblock %}

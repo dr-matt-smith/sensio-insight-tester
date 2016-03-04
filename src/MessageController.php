@@ -5,7 +5,6 @@ class MessageController
 {
     public function messagesAction(\Twig_Environment $twig)
     {
-//        $messageRepository = new MessageRepository();
         $messageRepository = new DatabaseTableRepository('Message', 'messages');
 
         $messages = $messageRepository->getAll();
@@ -21,7 +20,6 @@ class MessageController
 
     public function messagesAsJSONAction(\Twig_Environment $twig)
     {
-//        $messageRepository = new MessageRepository();
         $messageRepository = new DatabaseTableRepository('Message', 'messages');
 
         $messages = $messageRepository->getAll();
@@ -53,7 +51,6 @@ class MessageController
         $message->setTimestamp($timestamp);
 
         // use MessageRepository to store new Message object
-//        $messageRepository = new MessageRepository();
         $messageRepository = new DatabaseTableRepository('Message', 'messages');
         if($messageRepository->create($message)){
             $this->messagesAction($twig);
@@ -71,7 +68,6 @@ class MessageController
         $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
 
         // use MessageRepository to store new Message object
-//        $messageRepository = new MessageRepository();
         $messageRepository = new DatabaseTableRepository('Message', 'messages');
 
         if($messageRepository->delete($id)){
@@ -120,7 +116,6 @@ class MessageController
         $message->setTimestamp($timestamp);
 
         // use MessageRepository to store new Message object
-//        $messageRepository = new MessageRepository();
         $messageRepository = new DatabaseTableRepository('Message', 'messages');
         if($messageRepository->update($message, $id)){
             $this->messagesAction($twig);
