@@ -38,3 +38,8 @@
 
 # Composer PHAR
 /composer.phar
+
+# doc and testing tools
+/php-cs-fixer.phar
+/phpDocumentor.phar
+/phpunit.phar
