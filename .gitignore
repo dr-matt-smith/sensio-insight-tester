@@ -29,10 +29,6 @@
 # Assets managed by Bower
 /web/assets/vendor/
 
-# PHPUnit
-/app/phpunit.xml
-/phpunit.xml
-
 # Build data
 /build/
 
@@ -45,3 +41,10 @@
 /phpunit.phar
 
 .idea/*
+
+# PHPUnit
+/app/phpunit.xml
+
+# -- let's keep this one for now :-)
+#/phpunit.xml
+
