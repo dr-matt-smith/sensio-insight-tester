@@ -5,9 +5,8 @@ class MessageController
 {
     public function messagesAction(\Twig_Environment $twig)
     {
-        $messageRepository = new DatabaseTableRepository('Message', 'messages');
 
-        $messages = $messageRepository->getAll();
+        $messages = Message::getAll();
 
         $argsArray = [
             'messages' => $messages,
@@ -20,9 +19,7 @@ class MessageController
 
     public function messagesAsJSONAction(\Twig_Environment $twig)
     {
-        $messageRepository = new DatabaseTableRepository('Message', 'messages');
-
-        $messages = $messageRepository->getAll();
+        $messages = Message::getAll();
 
         $argsArray = [
             'messages' => $messages,
@@ -51,8 +48,7 @@ class MessageController
         $message->setTimestamp($timestamp);
 
         // use MessageRepository to store new Message object
-        $messageRepository = new DatabaseTableRepository('Message', 'messages');
-        if ($messageRepository->create($message)) {
+        if (Message::create($message)) {
             $this->messagesAction($twig);
         } else {
             $errorMessage = 'there was a problem adding your message to the database ...';
@@ -67,10 +63,8 @@ class MessageController
         // now sanitise with filter_var()
         $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
 
-        // use MessageRepository to store new Message object
-        $messageRepository = new DatabaseTableRepository('Message', 'messages');
-
-        if ($messageRepository->delete($id)) {
+        // use Messageto store new Message object
+        if (Message::delete($id)) {
             $this->messagesAction($twig);
         } else {
             $errorMessage = 'there was a problem delete message with id ' . $id . 'to the database ...';
@@ -84,9 +78,7 @@ class MessageController
         // now sanitise with filter_var()
         $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
 
-        $messageRepository = new DatabaseTableRepository('Message', 'messages');
-
-        $message = $messageRepository->getOneById($id);
+        $message = Message::getOneById($id);
 
         $argsArray = [
             'message' => $message,
@@ -114,9 +106,7 @@ class MessageController
         $message->setUser($user);
         $message->setTimestamp($timestamp);
 
-        // use MessageRepository to store new Message object
-        $messageRepository = new DatabaseTableRepository('Message', 'messages');
-        if ($messageRepository->update($message, $id)) {
+        if (Message::update($message, $id)) {
             $this->messagesAction($twig);
         } else {
             $errorMessage = 'there was a problem editing your message in the database ...';

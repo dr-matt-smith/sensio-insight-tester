@@ -4,29 +4,34 @@ namespace Itb;
 class DatabaseTable
 {
 
-    public function getAll()
+    public static function getClass()
+    {
+        return __CLASS__;
+    }
+
+    public static function getAll()
     {
         $db = new DatabaseManager();
         $connection = $db->getDbh();
 
-        $sql = 'SELECT * from ' . __CLASS__;
+        $sql = 'SELECT * from ' . join('', array_slice(explode('\\', static::getClass()), -1));
 
         $statement = $connection->prepare($sql);
-        $statement->setFetchMode(\PDO::FETCH_CLASS, __CLASS__);
+        $statement->setFetchMode(\PDO::FETCH_CLASS, '\\' .  __CLASS__);
         $statement->execute();
 
         $objects = $statement->fetchAll();
         return $objects;
     }
 
-    public function getOneById($id)
+    public static function getOneById($id)
     {
         $db = new DatabaseManager();
         $connection = $db->getDbh();
 
-        $statement = $connection->prepare('SELECT * from ' . __CLASS__ . ' WHERE id=:id');
+        $statement = $connection->prepare('SELECT * from ' .  join('', array_slice(explode('\\', static::getClass()), -1)) . ' WHERE id=:id');
         $statement->bindParam(':id', $id, \PDO::PARAM_INT);
-        $statement->setFetchMode(\PDO::FETCH_CLASS, __CLASS__);
+        $statement->setFetchMode(\PDO::FETCH_CLASS, '\\' .  __CLASS__);
         $statement->execute();
 
         if ($object = $statement->fetch()) {
@@ -44,19 +49,19 @@ class DatabaseTable
      * @return bool
      */
 
-    public function delete($id)
+    public static function delete($id)
     {
         $db = new DatabaseManager();
         $connection = $db->getDbh();
 
-        $statement = $connection->prepare('DELETE from ' . __CLASS__ . ' WHERE id=:id');
+        $statement = $connection->prepare('DELETE from ' . join('', array_slice(explode('\\', static::getClass()), -1)) . ' WHERE id=:id');
         $statement->bindParam(':id', $id, \PDO::PARAM_INT);
         $queryWasSuccessful = $statement->execute();
         return $queryWasSuccessful;
     }
 
 
-    public function searchByColumn($columnName, $searchText)
+    public static function searchByColumn($columnName, $searchText)
     {
         $db = new DatabaseManager();
         $connection = $db->getDbh();
@@ -64,9 +69,9 @@ class DatabaseTable
         // wrap wildcard '%' around the serach text for the SQL query
         $searchText = '%' . $searchText . '%';
 
-        $statement = $connection->prepare('SELECT * from ' . __CLASS__ . ' WHERE ' . $columnName . ' LIKE :searchText');
+        $statement = $connection->prepare('SELECT * from ' . join('', array_slice(explode('\\', static::getClass()), -1)) . ' WHERE ' . $columnName . ' LIKE :searchText');
         $statement->bindParam(':searchText', $searchText, \PDO::PARAM_STR);
-        $statement->setFetchMode(\PDO::FETCH_CLASS, __CLASS__);
+        $statement->setFetchMode(\PDO::FETCH_CLASS, '\\' .  static::getClass());
         $statement->execute();
 
         $objects = $statement->fetchAll();
@@ -81,7 +86,7 @@ class DatabaseTable
      * @param Object $object
      * @return integer
      */
-    public function create($object)
+    public static function create($object)
     {
         $db = new DatabaseManager();
         $connection = $db->getDbh();
@@ -91,7 +96,7 @@ class DatabaseTable
         $insertFieldList = DatatbaseUtility::fieldListToInsertString($fields);
         $valuesFieldList = DatatbaseUtility::fieldListToValuesString($fields);
 
-        $statement = $connection->prepare('INSERT into '. __CLASS__ . ' ' . $insertFieldList . $valuesFieldList);
+        $statement = $connection->prepare('INSERT into '. join('', array_slice(explode('\\', static::getClass()), -1)) . ' ' . $insertFieldList . $valuesFieldList);
         $statement->execute($objectAsArrayForSqlInsert);
 
         $queryWasSuccessful = ($statement->rowCount() > 0);
@@ -109,7 +114,7 @@ class DatabaseTable
      * @param Object $object
      * @return integer
      */
-    public function update($object, $id)
+    public static function update($object, $id)
     {
         $db = new DatabaseManager();
         $connection = $db->getDbh();
@@ -118,7 +123,7 @@ class DatabaseTable
         $fields = array_keys($objectAsArrayForSqlInsert);
         $updateFieldList = DatatbaseUtility::fieldListToUpdateString($fields);
 
-        $sql = 'UPDATE '. __CLASS__. ' SET ' . $updateFieldList  . ' WHERE id=:id';
+        $sql = 'UPDATE '. join('', array_slice(explode('\\', static::getClass()), -1)) . ' SET ' . $updateFieldList  . ' WHERE id=:id';
         $statement = $connection->prepare($sql);
 
         // add 'id' to parameters array

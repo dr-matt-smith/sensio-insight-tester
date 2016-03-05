@@ -1,8 +1,13 @@
 <?php
 namespace Itb;
 
-class Message
+class Message  extends DatabaseTable
 {
+    public static function getClass()
+    {
+        return __CLASS__;
+    }
+
     /**
      * the object's unique ID
      * @var int

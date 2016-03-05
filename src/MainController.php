@@ -42,8 +42,7 @@ class MainController
      */
     public function listAction(\Twig_Environment $twig)
     {
-        $dvdRepository = new DatabaseTableRepository('Dvd', 'dvds');
-        $dvds = $dvdRepository->getAll();
+        $dvds = Dvd::getAll();
 
         $argsArray = [
             'dvds' => $dvds,
@@ -61,8 +60,7 @@ class MainController
     {
         $searchText = filter_input(INPUT_POST, 'searchText', FILTER_SANITIZE_STRING);
 
-        $dvdRepository = new DatabaseTableRepository('Dvd', 'dvds');
-        $dvds = $dvdRepository->searchByColumn('title', $searchText);
+        $dvds = Dvd::searchByColumn('title', $searchText);
 
         $argsArray = [
             'dvds' => $dvds,
@@ -81,8 +79,7 @@ class MainController
     {
         $searchText = filter_input(INPUT_POST, 'searchText', FILTER_SANITIZE_STRING);
 
-        $dvdRepository = new DvdRepository();
-        $dvds = $dvdRepository->searchByTitleOrCategory($searchText);
+        $dvds = Dvd::searchByTitleOrCategory($searchText);
 
         $argsArray = [
             'dvds' => $dvds,
@@ -101,8 +98,7 @@ class MainController
      */
     public function detailAction(\Twig_Environment $twig, $id)
     {
-        $dvdRepository = new DatabaseTableRepository('Dvd', 'dvds');
-        $dvd = $dvdRepository->getOneById($id);
+        $dvd = Dvd::getOneById($id);
 
         $argsArray = [
             'dvd' => $dvd,
