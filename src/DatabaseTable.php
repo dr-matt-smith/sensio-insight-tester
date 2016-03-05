@@ -3,8 +3,6 @@ namespace Itb;
 
 class DatabaseTable
 {
-    private $className;
-    private $tableName;
 
     public function getAll()
     {

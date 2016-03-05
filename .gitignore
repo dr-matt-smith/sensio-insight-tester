@@ -40,7 +40,6 @@
 /phpDocumentor.phar
 /phpunit.phar
 
-.idea/*
 
 # PHPUnit
 /app/phpunit.xml
