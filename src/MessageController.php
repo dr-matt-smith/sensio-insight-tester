@@ -48,7 +48,7 @@ class MessageController
         $message->setTimestamp($timestamp);
 
         // use MessageRepository to store new Message object
-        if (Message::create($message)) {
+        if (Message::insert($message)) {
             $this->messagesAction($twig);
         } else {
             $errorMessage = 'there was a problem adding your message to the database ...';

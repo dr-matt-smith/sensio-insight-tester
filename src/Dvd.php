@@ -21,11 +21,6 @@ namespace Itb;
  */
 class Dvd extends DatabaseTable
 {
-    public static function getClass()
-    {
-        return __CLASS__;
-    }
-
     /**
      * the objects unique ID
      * @var int
@@ -106,7 +101,8 @@ class Dvd extends DatabaseTable
         // wrap wildcard '%' around the serach text for the SQL query
         $searchText = '%' . $searchText . '%';
 
-        $sql = 'SELECT * from ' . join('', array_slice(explode('\\', static::getClass()), -1)) . ' WHERE (title LIKE :searchText) or (category LIKE :searchText)';
+        $sql = 'SELECT * from ' . static::getTableName() . ' WHERE (title LIKE :searchText) or (category LIKE :searchText)';
+
         $statement = $connection->prepare($sql);
         $statement->bindParam(':searchText', $searchText, \PDO::PARAM_STR);
         $statement->setFetchMode(\PDO::FETCH_CLASS, '\\' . __CLASS__);
